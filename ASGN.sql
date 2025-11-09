@@ -86,3 +86,67 @@ SELECT CONVERT(VARCHAR(20), JoiningDate, 111) AS [Joining Date] FROM EmployeeDet
 
 -- 20. Show only time part of JoiningDate
 SELECT CONVERT(VARCHAR(20), JoiningDate, 108) AS [Joining Time] FROM EmployeeDetail;
+
+-- 21. Get only Year part of JoiningDate.
+SELECT DATEPART(YEAR, JoiningDate) FROM EmployeeDetail;
+
+-- 22. Get only Month part of JoiningDate.
+SELECT DATEPART(MONTH, JoiningDate) FROM EmployeeDetail;
+
+-- 23. Get system date.
+SELECT GETDATE();
+
+-- 24. Get UTC date.
+SELECT GETUTCDATE();
+
+-- 25. Get diff between current date and joining date in months.
+SELECT FirstName, DATEDIFF(MM, JoiningDate, GETDATE()) AS [Total Months] FROM
+EmployeeDetail;
+
+-- 26. Get diff between current date and joining date in days.
+SELECT FirstName, DATEDIFF(DD, JoiningDate, GETDATE()) AS [Total Days] FROM
+EmployeeDetail;
+
+-- 27. Get employee details whose joining year is 2013.
+SELECT * FROM EmployeeDetail WHERE DATEPART(YYYY, JoiningDate) = 2013;
+
+-- 28. Get employee details whose joining month is January.
+SELECT * FROM EmployeeDetail WHERE DATEPART(MM, JoiningDate) = 1;
+
+-- 29. Get employee details who joined between '2013-01-01' and '2013-12-01'.
+SELECT * FROM EmployeeDetail WHERE JoiningDate BETWEEN '2013-01-01' AND
+'2013-12-01';
+
+-- 30. Get total number of employees.
+SELECT COUNT(*) FROM EmployeeDetail;
+
+-- 31. Select only top 1 record from EmployeeDetail table.
+SELECT TOP 1 * FROM EmployeeDetail;
+
+-- 32. Get employee details where FirstName IN ('Vikas', 'Ashish', 'Nikhil').
+SELECT * FROM EmployeeDetail WHERE FirstName IN ('Vikas', 'Ashish', 'Nikhil');
+
+-- 33. Get employee details where FirstName NOT IN ('Vikas', 'Ashish', 'Nikhil').
+SELECT * FROM EmployeeDetail WHERE FirstName NOT IN ('Vikas', 'Ashish', 'Nikhil');
+
+-- 34. Remove spaces from right side of FirstName.
+SELECT RTRIM(FirstName) AS [FirstName] FROM EmployeeDetail;
+
+-- 35. Remove spaces from left side of FirstName.
+SELECT LTRIM(FirstName) AS [FirstName] FROM EmployeeDetail;
+
+-- 36. Display FirstName and Gender as M/F.
+SELECT FirstName, CASE WHEN Gender='Male' THEN 'M' WHEN Gender='Female' THEN 'F' END
+AS Gender FROM EmployeeDetail;
+
+-- 37. Prefix 'Hello' before FirstName.
+SELECT 'Hello ' + FirstName AS Greeting FROM EmployeeDetail;
+
+-- 38. Get employee details where Salary > 600000.
+SELECT * FROM EmployeeDetail WHERE Salary > 600000;
+
+-- 39. Get employee details where Salary < 700000.
+SELECT * FROM EmployeeDetail WHERE Salary < 700000;
+
+-- 40. Get employee details where Salary BETWEEN 500000 AND 600000.
+SELECT * FROM EmployeeDetail WHERE Salary BETWEEN 500000 AND 600000;
